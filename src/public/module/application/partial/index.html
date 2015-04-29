@@ -1,6 +1,27 @@
 <div class="container">
 
-    <h3>Windows generator</h3>
+    <ul class="nav">
+        <li><h3>Windows generator</h3></li>
+        <li><button class="btn btn-success">Add window</button></li>
+        <li><button class="btn btn-primary">Get data</button></li>
+    </ul>
 
-    <div>Episode 1: The Phantom Pilot</div>
+    <hr/>
+    <div data-ng-repeat="window in windows">
+        <div class="row">
+            <div class="col-xs-3" data-ng-repeat="field in fields">
+                <div class="form-group">
+                    <label>{{field.label}}</label>
+                    <input type="text" class="form-control" data-ng-model="window[field.name]" placeholder="Placeholder">
+                </div>
+
+                <!--<div field="window.data[field]" data-label="field.label"></div>-->
+            </div>
+            <div class="col-xs-3">
+                <i class="glyphicon glyphicon-remove-sign" data-ng-click="window.delete()"></i>
+            </div>
+        </div>
+    </div>
+    <hr/>
+    <div></div>
 </div>
