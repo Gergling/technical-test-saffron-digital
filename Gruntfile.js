@@ -132,6 +132,22 @@ module.exports = function (grunt) {
         }
     });
 
+    grunt.registerTask('data', "Generate JSON File", function () {
+        var window = function (name, start, end) {
+            return {
+                name: name,
+                start: start,
+                end: end
+            };
+        };
+
+        grunt.file.write("src/public/windows.json", JSON.stringify([
+            window("Foo", "01-04-2015", "10-04-2015"),
+            window("Bar", "03-04-2015", "11-04-2015"),
+            window("Baz", "10-04-2015", "12-04-2015")
+        ]));
+    });
+
     grunt.loadNpmTasks('grunt-angular-templates');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
