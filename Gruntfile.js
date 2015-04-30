@@ -142,9 +142,9 @@ module.exports = function (grunt) {
         };
 
         grunt.file.write("src/public/windows.json", JSON.stringify([
-            window("Foo", "01-04-2015", "10-04-2015"),
-            window("Bar", "03-04-2015", "11-04-2015"),
-            window("Baz", "10-04-2015", "12-04-2015")
+            window("Foo", "2015-04-01", "2015-04-10"),
+            window("Bar", "2015-04-03", "2015-04-11"),
+            window("Baz", "2015-04-10", "2015-04-12")
         ]));
     });
 
