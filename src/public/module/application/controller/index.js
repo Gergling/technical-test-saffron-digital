@@ -19,13 +19,10 @@ angular.module('application').controller("application.controller.index", [
                     start,
                     end,
                     diff = 0,
-                    colourCode = 0,
-                    red = 0,
-                    green = 0,
-                    blue = 0;
+                    channels = [ ],
+                    i;
 
-                var channels = [ ];
-                for (var i = 0; i < 3; i += 1) {
+                for (i = 0; i < 3; i += 1) {
                     channels.push(Math.floor(Math.random() * 256));
                 }
                 style['background-color'] = 'rgb(' + channels.join(",") + ')';
@@ -53,11 +50,10 @@ angular.module('application').controller("application.controller.index", [
             field("start"),
             field("end")
         ];
-
         $scope.windows = [ ];
 
         // Directive functions
-        $scope.addWindow = function () {$scope.windows.push(new Win({ }))};
+        $scope.addWindow = function () {$scope.windows.push(new Win({ })); };
         $scope.update = function () {
             maxDays = 0;
             $scope.windows.forEach(function (win) {

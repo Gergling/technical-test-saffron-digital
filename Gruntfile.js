@@ -50,7 +50,8 @@ module.exports = function (grunt) {
                 directives: {
                     browser: true,
                     predef: [
-                        "angular"
+                        "angular",
+                        "console"
                     ]
                 }
             },
