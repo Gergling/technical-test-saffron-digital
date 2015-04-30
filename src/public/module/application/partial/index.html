@@ -24,5 +24,8 @@
         </div>
     </div>
     <hr/>
-    <div></div>
+    <div style="margin-bottom: 5px;" data-ng-repeat="window in windows">
+        <div>{{window.data.name}}</div>
+        <div style="height: 20px;" data-ng-style="window.style()"></div>
+    </div>
 </div>
