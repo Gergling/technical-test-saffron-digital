@@ -27,6 +27,12 @@ module.exports = function (grunt) {
                 files: [
                     {
                         expand: true,
+                        cwd: 'src/public/',
+                        src: ['windows.json'],
+                        dest: 'dist/'
+                    },
+                    {
+                        expand: true,
                         cwd: 'src/public/vendor/bootstrap/dist/fonts/',
                         src: ['**'],
                         dest: 'dist/fonts/'
