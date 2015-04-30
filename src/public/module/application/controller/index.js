@@ -31,7 +31,6 @@ angular.module('application').controller("application.controller.index", [
                 style['background-color'] = 'rgb(' + channels.join(",") + ')';
 
                 this.data = data;
-                this.remove = function () { };
                 this.style = function () {
                     return angular.extend({
                         width: (diff * 100 / maxDays) + '%'
@@ -67,6 +66,10 @@ angular.module('application').controller("application.controller.index", [
         };
         $scope.getData = function () {
             console.log(JSON.stringify($scope.windows));
+        };
+        $scope.delete = function (idx) {
+            $scope.windows.splice(idx, 1);
+            $scope.update();
         };
 
         // Load the windows
