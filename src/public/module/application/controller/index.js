@@ -16,26 +16,19 @@ angular.module('application').controller("application.controller.index", [
             maxDays = 0,
             Win = function (data) {
                 var style = { },
-                    start = new Date(data.start),
-                    end = new Date(data.end),
-                    diff = (end.getTime() - start.getTime()) / 1000 / 60 / 60 / 24,
+                    start,
+                    end,
+                    diff = 0,
                     colourCode = 0,
-                    red,
-                    green,
-                    blue;
+                    red = 0,
+                    green = 0,
+                    blue = 0;
 
-                // Find number of days
-                maxDays = Math.max(diff, maxDays);
-
-                // Get a colour according to the window name
-                data.name.split("").forEach(function (character, idx) {
-                    var code = character.charCodeAt(0);
-                    colourCode += code * (data.name.length - idx);
-                });
-                blue = colourCode % 256;
-                green = (blue >> 8) % 256;
-                red = (green >> 8) % 256;
-                style['background-color'] = 'rgb(' + [ red, green, blue ].join(",") + ')';
+                var channels = [ ];
+                for (var i = 0; i < 3; i += 1) {
+                    channels.push(Math.floor(Math.random() * 256));
+                }
+                style['background-color'] = 'rgb(' + channels.join(",") + ')';
 
                 this.data = data;
                 this.remove = function () { };
@@ -44,8 +37,18 @@ angular.module('application').controller("application.controller.index", [
                         width: (diff * 100 / maxDays) + '%'
                     }, style);
                 };
+                this.getDiff = function () {return diff; };
+                this.update = function () {
+                    if (data.start && data.end) {
+                        start = new Date(data.start);
+                        end = new Date(data.end);
+                        diff = (end.getTime() - start.getTime()) / 1000 / 60 / 60 / 24;
+                    }
+                };
+                this.update();
             };
 
+        // Directive properties
         $scope.fields = [
             field("name"),
             field("start"),
@@ -54,10 +57,24 @@ angular.module('application').controller("application.controller.index", [
 
         $scope.windows = [ ];
 
+        // Directive functions
+        $scope.addWindow = function () {$scope.windows.push(new Win({ }))};
+        $scope.update = function () {
+            maxDays = 0;
+            $scope.windows.forEach(function (win) {
+                maxDays = Math.max(win.getDiff(), maxDays);
+            });
+        };
+        $scope.getData = function () {
+            console.log(JSON.stringify($scope.windows));
+        };
+
+        // Load the windows
         windows.list().then(function (response) {
             response.forEach(function (win) {
                 $scope.windows.push(new Win(win));
             });
+            $scope.update();
         });
     }
 ]);

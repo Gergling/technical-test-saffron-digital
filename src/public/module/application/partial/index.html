@@ -13,7 +13,7 @@
             <div class="col-xs-3" data-ng-repeat="field in fields">
                 <div class="form-group">
                     <label>{{field.label}}</label>
-                    <input type="text" class="form-control" data-ng-model="window[field.name]" placeholder="Placeholder">
+                    <input type="text" class="form-control" data-ng-model="window.data[field.name]" data-ng-change="window.update();update()" placeholder="{{field.label}}">
                 </div>
             </div>
             <div class="col-xs-3">
