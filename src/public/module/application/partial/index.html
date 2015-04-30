@@ -1,10 +1,11 @@
 <div class="container">
 
-    <ul class="nav">
-        <li><h3>Windows generator</h3></li>
-        <li><button class="btn btn-success">Add window</button></li>
-        <li><button class="btn btn-primary">Get data</button></li>
-    </ul>
+    <div class="top">
+        <h3>Windows generator</h3>
+        <button class="btn btn-success" data-ng-click="addWindow()">Add window</button>
+        <button class="btn btn-primary" data-ng-click="getData()">Get data</button>
+    </div>
+    <div style="clear:both;"></div>
 
     <hr/>
     <div data-ng-repeat="window in windows">
